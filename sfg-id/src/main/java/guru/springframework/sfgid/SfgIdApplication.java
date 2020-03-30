@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import guru.springframework.sfgid.controllers.ConstructorInjectedController;
 import guru.springframework.sfgid.controllers.I18nController;
 import guru.springframework.sfgid.controllers.MyController;
+import guru.springframework.sfgid.controllers.PetController;
 import guru.springframework.sfgid.controllers.PrimaryController;
 import guru.springframework.sfgid.controllers.PropertyInjectedController;
 import guru.springframework.sfgid.controllers.SetterInjectedController;
@@ -16,6 +17,10 @@ public class SfgIdApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SfgIdApplication.class, args);
+		
+		PetController petController = ctx.getBean("petController", PetController.class);
+		System.out.println("--- The Best Pet is ---");
+		System.out.println(petController.whichPetIsTheBest());		
 		
 		MyController myController = (MyController)ctx.getBean("myController");
 		String greetings = myController.sayHello();
